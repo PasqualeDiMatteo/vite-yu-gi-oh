@@ -1,7 +1,11 @@
 <script>
 import CardPokemon from "./CardPokemon.vue"
+import { store } from "../../assets/data/store"
 export default {
-    components: { CardPokemon }
+    components: { CardPokemon },
+    data() {
+        return { store }
+    }
 }
 </script>
 
