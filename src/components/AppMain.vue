@@ -1,6 +1,7 @@
 <script>
+import DisplayPokedex from "./components-Main/DisplayPokedex.vue"
 export default {
-
+    components: { DisplayPokedex }
 }
 </script>
 
@@ -8,6 +9,7 @@ export default {
     <main>
         <div class="container">
             <div class="pokédex">
+                <DisplayPokedex />
             </div>
         </div>
     </main>
@@ -16,7 +18,8 @@ export default {
 <style lang="scss" scoped>
 .pokédex {
     background-color: #dedede;
-    min-height: 500px;
+    height: 500px;
     border-radius: 20px;
+    padding: 40px 20px;
 }
 </style>
