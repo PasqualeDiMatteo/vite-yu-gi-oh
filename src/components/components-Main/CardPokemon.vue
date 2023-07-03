@@ -31,8 +31,13 @@ export default {
     height: 100%;
 }
 
+h5 {
+    font-size: 17px;
+}
+
 img {
     width: 120px;
+    height: 100px;
     border-radius: 50%;
 }
 </style>
