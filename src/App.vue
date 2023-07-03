@@ -22,9 +22,9 @@ export default {
                 <div class="circle small-circle yellow-circle  mx-2"></div>
                 <div class="circle small-circle green-circle  mx-2"></div>
             </div>
-            <AppMain />
         </div>
     </header>
+    <AppMain />
 </template>
 
 <style lang="scss">
