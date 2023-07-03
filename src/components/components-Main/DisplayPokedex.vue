@@ -13,7 +13,7 @@ export default {
     <div class="background p-3">
         <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-3">
             <CardPokemon v-for="pokemon in store.pokemonLists" :name="pokemon.name" :type="pokemon.type1"
-                :number="pokemon.number" :image="pokemon.imageUrl" />
+                :number="pokemon.number" :image="pokemon.imageUrl" :color="pokemon.color" />
         </div>
     </div>
 </template>
