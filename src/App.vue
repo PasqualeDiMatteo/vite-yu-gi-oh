@@ -3,11 +3,14 @@ const endpoint = "https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/
 import axios from "axios";
 import { store } from "./assets/data/store"
 import AppMain from "./components/AppMain.vue"
+import AppLoader from "./components/AppLoader.vue"
 export default {
-    components: { AppMain },
-    created() {
+    components: { AppMain, AppLoader },
+    mounted() {
         axios.get(endpoint).then(res => {
+            store.isLoaded = false
             store.pokemonLists = res.data.docs
+            store.isLoaded = true
         })
     }
 }
@@ -25,6 +28,7 @@ export default {
         </div>
     </header>
     <AppMain />
+    <AppLoader />
 </template>
 
 <style lang="scss">
