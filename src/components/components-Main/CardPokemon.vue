@@ -39,5 +39,6 @@ img {
     width: 120px;
     height: 100px;
     border-radius: 50%;
+    object-fit: contain;
 }
 </style>
