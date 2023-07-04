@@ -11,12 +11,16 @@ import AppMain from "./components/AppMain.vue"
 import AppLoader from "./components/AppLoader.vue"
 import FilteredType from "./components/FilteredType.vue"
 import FilteredName from "./components/FilteredName.vue"
+import AppPagination from "./components/AppPagination.vue"
+
 
 export default {
     data() {
         return {
             typeSearch: "",
             nameSearch: "",
+            prevPage: 0,
+            nextPage: 0,
             store,
         }
     },
@@ -31,6 +35,8 @@ export default {
                 store.isLoaded = false
                 store.pokemonLists = res.data.docs
                 store.isLoaded = true
+                this.nextPage = res.data.nextPage
+                this.prevPage = res.data.prevPage
             })
         },
         currentOption(optionSelected) {
@@ -46,8 +52,18 @@ export default {
             const filterEndpoint = `${endpoint}?q[name]=${this.nameSearch}`;
             this.fetchPokemons(filterEndpoint);
         },
+        goToPrev() {
+            if (this.prevPage === null) return
+            const prevPage = `${endpoint}?page=${this.prevPage}`;
+            this.fetchPokemons(prevPage);
+        },
+        goToNext() {
+            if (this.nextPage === null) return
+            const nextPage = `${endpoint}?page=${this.nextPage}`;
+            this.fetchPokemons(nextPage);
+        }
     },
-    components: { AppMain, AppLoader, AppHeader, FilteredType, FilteredName },
+    components: { AppMain, AppLoader, AppHeader, FilteredType, FilteredName, AppPagination },
     created() {
         this.fetchPokemons(endpoint)
         this.fetchTypes(endpointType)
@@ -60,6 +76,7 @@ export default {
     <FilteredType :options="store.options" @option="currentOption" />
     <FilteredName @searchTerm="searchName" />
     <AppMain />
+    <AppPagination @clicked-next="goToNext()" @clicked-prev="goToPrev()" :toPrevPage="prevPage" :toNextPage="nextPage" />
     <AppLoader />
 </template>
 
