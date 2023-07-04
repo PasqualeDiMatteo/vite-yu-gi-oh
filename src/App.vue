@@ -14,17 +14,20 @@ export default {
         }
     },
     methods: {
+        fetchPokemons(url) {
+            axios.get(url).then(res => {
+                store.isLoaded = false
+                store.pokemonLists = res.data.docs
+                store.isLoaded = true
+            })
+        },
         currentOption(optionSelected) {
             this.typeSearch = optionSelected
         }
     },
     components: { AppMain, AppLoader, AppHeader, AppSelect },
-    mounted() {
-        axios.get(endpoint).then(res => {
-            store.isLoaded = false
-            store.pokemonLists = res.data.docs
-            store.isLoaded = true
-        })
+    created() {
+        this.fetchPokemons(endpoint)
     }
 }
 </script>
