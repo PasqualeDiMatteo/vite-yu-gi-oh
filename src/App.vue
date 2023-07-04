@@ -5,8 +5,20 @@ import { store } from "./assets/data/store"
 import AppHeader from "./components/AppHeader.vue"
 import AppMain from "./components/AppMain.vue"
 import AppLoader from "./components/AppLoader.vue"
+import AppSelect from "./components/AppSelect.vue"
 export default {
-    components: { AppMain, AppLoader, AppHeader },
+    data() {
+        return {
+            typeSearch: "",
+            store,
+        }
+    },
+    methods: {
+        currentOption(optionSelected) {
+            this.typeSearch = optionSelected
+        }
+    },
+    components: { AppMain, AppLoader, AppHeader, AppSelect },
     mounted() {
         axios.get(endpoint).then(res => {
             store.isLoaded = false
@@ -19,6 +31,7 @@ export default {
 
 <template>
     <AppHeader />
+    <AppSelect :options="store.options" @option="currentOption" />
     <AppMain />
     <AppLoader />
 </template>

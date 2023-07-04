@@ -1,20 +1,6 @@
 <script>
-import SelectHeader from "./components-Header/SelectHeader.vue"
-import { store } from "../assets/data/store"
-
 export default {
-    components: { SelectHeader },
-    data() {
-        return {
-            typeSearch: "",
-            store,
-        }
-    },
-    methods: {
-        currentOption(optionSelected) {
-            this.typeSearch = optionSelected
-        }
-    }
+
 }
 </script>
 
@@ -28,7 +14,6 @@ export default {
                 <div class="circle small-circle green-circle  mx-2"></div>
             </div>
         </div>
-        <SelectHeader :options="store.options" @option="currentOption" />
     </header>
 </template>
 <style scoped lang="scss">
