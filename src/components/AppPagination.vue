@@ -13,7 +13,7 @@ export default {
 </script>
 <template>
     <nav class="d-flex justify-content-center mt-3">
-        <ul class="pagination">
+        <ul v-if="toNextPage || toPrevPage" class="pagination">
             <li class="page-item" @click="$emit('clicked-prev')" :class="{ 'disabled': !toPrevPage }">
                 <button class="page-link">Previous</button>
             </li>

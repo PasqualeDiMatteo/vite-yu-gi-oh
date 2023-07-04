@@ -7,7 +7,7 @@ export default {
 <template>
     <header>
         <div class="container">
-            <div class="my-navbar my-5">
+            <div class="my-navbar my-3">
                 <div class="circle big-circle blue-circle me-2"></div>
                 <div class="circle small-circle red-circle  mx-2"></div>
                 <div class="circle small-circle yellow-circle  mx-2"></div>
