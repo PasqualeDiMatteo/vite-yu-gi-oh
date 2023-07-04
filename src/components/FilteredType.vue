@@ -12,7 +12,7 @@ export default {
 }
 </script>
 <template>
-    <div class="container mb-5">
+    <div class="container mb-2 d-flex justify-content-end">
         <select class="form-select" v-model="optionSelected" @change="$emit('option', optionSelected)">
             <option selected value="">---</option>
             <option :value="option" v-for="option in options">{{ option }}</option>
@@ -21,6 +21,6 @@ export default {
 </template>
 <style scoped lang="scss">
 select {
-    width: 500px;
+    width: 200px;
 }
 </style>

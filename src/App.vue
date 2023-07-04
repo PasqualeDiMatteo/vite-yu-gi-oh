@@ -2,23 +2,27 @@
 const endpoint = "https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons"
 const endpointType = "https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons/types1"
 
+
+
 import axios from "axios";
 import { store } from "./assets/data/store"
 import AppHeader from "./components/AppHeader.vue"
 import AppMain from "./components/AppMain.vue"
 import AppLoader from "./components/AppLoader.vue"
-import AppSelect from "./components/AppSelect.vue"
+import FilteredType from "./components/FilteredType.vue"
+import FilteredName from "./components/FilteredName.vue"
+
 export default {
     data() {
         return {
             typeSearch: "",
+            nameSearch: "",
             store,
         }
     },
     methods: {
         feachTypes(url) {
             axios.get(url).then(res => {
-                console.log(res)
                 store.options = res.data
             })
         },
@@ -36,9 +40,14 @@ export default {
             }
             const filterEndpoint = `${endpoint}?eq[type1]=${this.typeSearch}`;
             this.fetchPokemons(filterEndpoint);
-        }
+        },
+        searchName(searchTerm) {
+            this.nameSearch = searchTerm
+            const filterEndpoint = `${endpoint}?q[name]=${this.nameSearch}`;
+            this.fetchPokemons(filterEndpoint);
+        },
     },
-    components: { AppMain, AppLoader, AppHeader, AppSelect },
+    components: { AppMain, AppLoader, AppHeader, FilteredType, FilteredName },
     created() {
         this.fetchPokemons(endpoint)
         this.feachTypes(endpointType)
@@ -48,7 +57,8 @@ export default {
 
 <template>
     <AppHeader />
-    <AppSelect :options="store.options" @option="currentOption" />
+    <FilteredType :options="store.options" @option="currentOption" />
+    <FilteredName @searchTerm="searchName" />
     <AppMain />
     <AppLoader />
 </template>
