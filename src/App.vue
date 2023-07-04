@@ -23,6 +23,12 @@ export default {
         },
         currentOption(optionSelected) {
             this.typeSearch = optionSelected
+            if (this.typeSearch === "") {
+                return this.fetchPokemons(endpoint)
+            }
+            const filterEndpoint = `${endpoint}?eq[type1]=${this.typeSearch}`;
+            console.log(filterEndpoint)
+            this.fetchPokemons(filterEndpoint);
         }
     },
     components: { AppMain, AppLoader, AppHeader, AppSelect },
