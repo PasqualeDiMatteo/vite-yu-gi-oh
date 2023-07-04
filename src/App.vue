@@ -1,5 +1,7 @@
 <script>
 const endpoint = "https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons"
+const endpointType = "https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons/types1"
+
 import axios from "axios";
 import { store } from "./assets/data/store"
 import AppHeader from "./components/AppHeader.vue"
@@ -14,6 +16,12 @@ export default {
         }
     },
     methods: {
+        feachTypes(url) {
+            axios.get(url).then(res => {
+                console.log(res)
+                store.options = res.data
+            })
+        },
         fetchPokemons(url) {
             axios.get(url).then(res => {
                 store.isLoaded = false
@@ -27,13 +35,13 @@ export default {
                 return this.fetchPokemons(endpoint)
             }
             const filterEndpoint = `${endpoint}?eq[type1]=${this.typeSearch}`;
-            console.log(filterEndpoint)
             this.fetchPokemons(filterEndpoint);
         }
     },
     components: { AppMain, AppLoader, AppHeader, AppSelect },
     created() {
         this.fetchPokemons(endpoint)
+        this.feachTypes(endpointType)
     }
 }
 </script>
