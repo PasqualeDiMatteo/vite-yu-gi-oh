@@ -21,7 +21,7 @@ export default {
         }
     },
     methods: {
-        feachTypes(url) {
+        fetchTypes(url) {
             axios.get(url).then(res => {
                 store.options = res.data
             })
@@ -50,7 +50,7 @@ export default {
     components: { AppMain, AppLoader, AppHeader, FilteredType, FilteredName },
     created() {
         this.fetchPokemons(endpoint)
-        this.feachTypes(endpointType)
+        this.fetchTypes(endpointType)
     }
 }
 </script>
