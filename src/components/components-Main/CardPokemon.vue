@@ -2,7 +2,7 @@
 export default {
     data() {
         return {
-            message: ""
+            classes: ""
         }
     },
     props: {
@@ -16,13 +16,13 @@ export default {
         getClass(type) {
             switch (type) {
                 case "Fire":
-                    return this.message = "bg-red"
+                    return this.classes = "bg-red"
                     break;
                 case "Grass":
-                    return this.message = "bg-green"
+                    return this.classes = "bg-green"
                     break;
                 case "Water":
-                    return this.message = "bg-blue"
+                    return this.classes = "bg-blue"
             }
         }
     }
