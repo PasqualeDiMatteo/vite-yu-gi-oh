@@ -6,7 +6,8 @@ export default {
         }
     },
     props: {
-        options: Array
+        options: Array,
+        defaultLabel: String
     },
     emits: ["option"]
 }
@@ -14,7 +15,7 @@ export default {
 <template>
     <div class="container mb-2 d-flex justify-content-end">
         <select class="form-select" v-model="optionSelected" @change="$emit('option', optionSelected)">
-            <option selected value="">Search by Type</option>
+            <option selected value="">{{ defaultLabel || "" }}</option>
             <option :value="option" v-for="option in options">{{ option }}</option>
         </select>
     </div>

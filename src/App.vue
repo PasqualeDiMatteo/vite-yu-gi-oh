@@ -73,7 +73,7 @@ export default {
 
 <template>
     <AppHeader />
-    <FilteredType :options="store.options" @option="currentOption" />
+    <FilteredType :options="store.options" @option="currentOption" :defaultLabel="'All Type'" />
     <FilteredName @searchTerm="searchName" />
     <AppMain />
     <AppPagination @clicked-next="goToNext()" @clicked-prev="goToPrev()" :toPrevPage="prevPage" :toNextPage="nextPage" />
